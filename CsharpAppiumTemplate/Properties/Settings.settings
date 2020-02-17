@@ -1,0 +1,99 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CsharpAppiumTemplate.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CONFIG_GET_SCREENSHOT_FOR_EACH_STEP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CONFIG_REPORT_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RelatorioTemplate</Value>
+    </Setting>
+    <Setting Name="CONFIG_TIMEOUT_DEFAULT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="CONFIG_ENVIRONMENT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">qa</Value>
+    </Setting>
+    <Setting Name="APPIUM_IP_ADDRESS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="APPIUM_PORT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4723</Value>
+    </Setting>
+    <Setting Name="APPIUM_SERVER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://127.0.0.1:4723/wd/hub</Value>
+    </Setting>
+    <Setting Name="APPIUM_AUTOMATION_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">uiAutomator2</Value>
+    </Setting>
+    <Setting Name="APPIUM_VERSION" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.15.1</Value>
+    </Setting>
+    <Setting Name="ANDROID_PLATAFORM_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Android</Value>
+    </Setting>
+    <Setting Name="ANDROID_PLATAFORM_VERSION" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9.0.0</Value>
+    </Setting>
+    <Setting Name="ANDROID_DEVICE_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pixel_3a_API_28</Value>
+    </Setting>
+    <Setting Name="ANDROID_APP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">app-debug.apk</Value>
+    </Setting>
+    <Setting Name="ANDROID_BROWSER_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Chrome</Value>
+    </Setting>
+    <Setting Name="ANDROID_UDID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">emulator-5554</Value>
+    </Setting>
+    <Setting Name="ANDROID_NO_RESET" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ANDROID_FULL_RESET" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ANDROID_APP_ACTIVITY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">com.amazonaws.devicefarm.android.referenceapp.Activities.MainActivity</Value>
+    </Setting>
+    <Setting Name="ANDROID_APP_PACKAGE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">com.amazonaws.devicefarm.android.referenceapp</Value>
+    </Setting>
+    <Setting Name="ANDROID_ORIENTATION" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PORTRAIT</Value>
+    </Setting>
+    <Setting Name="TEST_OBJECT_API_KEY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2A61B01CB2F947F18FDA9F44D6421XXX</Value>
+    </Setting>
+    <Setting Name="TEST_OBJECT_URL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://us1-manual.app.testobject.com/wd/hub</Value>
+    </Setting>
+    <Setting Name="IOS_UDID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8524B5F3-E529-4B09-8F05-EDE6040DDD65</Value>
+    </Setting>
+    <Setting Name="IOS_PLATFORM_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">iOS</Value>
+    </Setting>
+    <Setting Name="IOS_PLATFORM_VERSION" Type="System.String" Scope="User">
+      <Value Profile="(Default)">12.2</Value>
+    </Setting>
+    <Setting Name="IOS_BUNDLE_ID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Amazon.AWSDeviceFarmiOSReferenceApp</Value>
+    </Setting>
+    <Setting Name="IOS_NO_RESET" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IOS_FULL_RESET" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IOS_AUTOMATION_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">XCUITest</Value>
+    </Setting>
+    <Setting Name="IOS_DEVICE_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">iPhone X</Value>
+    </Setting>
+    <Setting Name="IOS_APP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">myapp2.ipa</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

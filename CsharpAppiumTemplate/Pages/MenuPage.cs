@@ -1,5 +1,6 @@
 ﻿using CsharpAppiumTemplate.Bases;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium.Support.PageObjects;
@@ -35,10 +36,10 @@ namespace CsharpAppiumTemplate.Pages
         //public IWebElement usernameField;
 
         [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[8]", Priority = 1)]
-        private By loginPageBtn;
+        IWebElement loginPageBtn;
 
         [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[4]", Priority = 1)]
-        private By inputControlsBtn;
+        IWebElement inputControlsBtn;
 
         public void clickLoginPage()
         {

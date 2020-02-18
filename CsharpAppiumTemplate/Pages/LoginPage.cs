@@ -1,15 +1,17 @@
 ﻿using CsharpAppiumTemplate.Bases;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Appium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace CsharpAppiumTemplate.Pages
 {
-    class LoginPage : PageBase
+    public class LoginPage : PageBase
     {
         //    @iOSFindBy(accessibility= "Username Input Field")
         //@AndroidFindBy(accessibility= "Username Input Field")
@@ -43,21 +45,20 @@ namespace CsharpAppiumTemplate.Pages
 
         [FindsByIOSUIAutomation(Accessibility = "Username Input Field", Priority = 1)]
         [FindsByAndroidUIAutomator(Accessibility = "Username Input Field", Priority = 1)]
-        private By usernameField;
-
-
+        IWebElement usernameField;
+        
         [FindsByIOSUIAutomation(Accessibility = "Password Input Field", Priority = 1)]
         [FindsByAndroidUIAutomator(Accessibility = "Password Input Field", Priority = 1)]
-        private By passwordField;
+        IWebElement passwordField;
 
 
         [FindsByIOSUIAutomation(Accessibility = "Login Button", Priority = 1)]
         [FindsByAndroidUIAutomator(Accessibility = "Login Button", Priority = 1)]
-        private By loginBtn;
+        IWebElement loginBtn;
 
         [FindsByIOSUIAutomation(Accessibility = "Alt Message", Priority = 1)]
         [FindsByAndroidUIAutomator(Accessibility = "Alt Message", Priority = 1)]
-        private By message;
+        IWebElement message;
 
         public void usernameFill(String username)
         {

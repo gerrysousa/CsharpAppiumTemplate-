@@ -1,15 +1,20 @@
 ﻿using CsharpAppiumTemplate.Bases;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Appium.PageObjects;
+using OpenQA.Selenium.Support.PageObjects;
+
 
 namespace CsharpAppiumTemplate.Pages
 {
-    class StartPage : PageBase
+    public class StartPage : PageBase
     {
         //   [AndroidFindBy](accessibility = "ReferenceApp")
         //private MobileElement menu(accessibility = "ReferenceApp");
@@ -19,12 +24,12 @@ namespace CsharpAppiumTemplate.Pages
         //        click(menu);
         //    }
 
-        [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[8]", Priority = 1)]
-        private By menu;
+        [FindsByAndroidUIAutomator(Accessibility = "ReferenceApp", Priority = 1)]
+        IWebElement menu;
 
         public void clickMenu()
         {
-            Click(menu);
+        Click(menu);
         }
     }
 }

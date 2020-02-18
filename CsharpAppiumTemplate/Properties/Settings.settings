@@ -9,7 +9,7 @@
       <Value Profile="(Default)">RelatorioTemplate</Value>
     </Setting>
     <Setting Name="CONFIG_TIMEOUT_DEFAULT" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">60</Value>
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="CONFIG_ENVIRONMENT" Type="System.String" Scope="User">
       <Value Profile="(Default)">qa</Value>

@@ -23,7 +23,7 @@ namespace CsharpAppiumTemplate.Helpers
         public static IWebDriver INSTANCE { get; set; } = null;
         //public static ITakesScreenshot INSTANCE { get; internal set; }
 
-        public static AppiumDriver<AppiumWebElement> getDriver()
+        public static AppiumDriver<AppiumWebElement> GetDriver()
         {
             if (driver == null)
             {

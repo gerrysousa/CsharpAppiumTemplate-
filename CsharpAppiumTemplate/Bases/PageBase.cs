@@ -1,9 +1,10 @@
 ﻿using CsharpAppiumTemplate.Helpers;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Interactions;
+//using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -11,63 +12,83 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using OpenQA.Selenium.Appium;
+using SeleniumExtras.PageObjects;
+using OpenQA.Selenium.Appium.PageObjects;
 
 namespace CsharpAppiumTemplate.Bases
 {
-    class PageBase
+   public class PageBase
     {
         //Variaveis globlais
-        protected AppiumDriver<AppiumWebElement> driver = null;
-        protected WebDriverWait wait = null;
+        public AppiumDriver<AppiumWebElement> driver;// = null;
+        public WebDriverWait wait = null;
         protected IJavaScriptExecutor javaScriptExecutor = null;
 
         //Construtor
         public PageBase()
         {
-            wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(Convert.ToDouble(Properties.Settings.Default.CONFIG_TIMEOUT_DEFAULT)));
-           // driver = DriverFactory.INSTANCE;
+            driver = DriverFactory.GetDriver();
+            AppiumPageObjectMemberDecorator decorator = new AppiumPageObjectMemberDecorator(new TimeOutDuration(System.TimeSpan.FromSeconds(15)));
+            PageFactory.InitElements(driver, this, decorator);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(GlobalParameters.TIMEOUT_DEFAULT));
+            // driver = DriverFactory.INSTANCE;
             javaScriptExecutor = (IJavaScriptExecutor)driver;
         }
 
-        protected void WaitForElement(By element)
+        protected void WaitForElement(IWebElement element)
         {
-            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(element));
+            //wait.Until(ExpectedConditions.ElementIsVisible(element));
             wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
-        protected void WaitForElementToBeClickeable(By element)
+        protected void WaitForElementToBeClickeable(IWebElement element)
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
-        protected void WaitForElementByTime(By element, int time)
+        protected void WaitForElementByTime(IWebElement element, int time)
         {
-            WebDriverWait waitTime = new WebDriverWait(driver,TimeSpan.FromSeconds(time));
-            waitTime.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(element));
+            WebDriverWait waitTime = new WebDriverWait(DriverFactory.GetDriver(), TimeSpan.FromSeconds(time));
+            //waitTime.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(element));
         }
 
-        protected void Click(By element)
+        protected void Click(IWebElement element)
         {
             WebDriverException possibleWebDriverException = null;
             Stopwatch timeOut = new Stopwatch();
             timeOut.Start();
-            while (Convert.ToInt32(timeOut) <= GlobalParameters.TIMEOUT_DEFAULT)
+
+            while ((((int)timeOut.ElapsedMilliseconds) / 1000) <= GlobalParameters.TIMEOUT_DEFAULT)
             {
                // AppiumWebElement element = null;
                 try
                 {
-                    //WaitForElement(element);
-                    //element.Click();
-                    //ExtentReportHelpers.AddTestInfo(3, "");
-                    //timeOut.Stop();
-                    //return;
+                    // //WaitForElement(element);
+                    // //element.Click();
+                    // //ExtentReportHelpers.AddTestInfo(3, "");
+                    // //timeOut.Stop();
+                    // //return;
 
-                    IWebElement iElement = driver.FindElement(element);
-                    WaitForElement(element);
-                    TouchActions action = new TouchActions(driver);
-                    action.SingleTap(iElement);
+                    //// //IWebElement iElement = driver.FindElement(element);
+                    //// WaitForElement(element);
+                    // TouchActions action = new TouchActions(DriverFactory.GetDriver());
+                    // action.SingleTap(element);
+                    // action.Perform();
+                    // ExtentReportHelpers.AddTestInfo(3, "");
+                    // timeOut.Stop();
+                    // return;
+
+                    TouchAction action= new TouchAction(DriverFactory.GetDriver());
+                    action.Tap(element);
+                   // action.SingleTap(element);
                     action.Perform();
+                    action.Release();
                     ExtentReportHelpers.AddTestInfo(3, "");
                     timeOut.Stop();
                     return;
+
+
+
 
                 }
                 catch (StaleElementReferenceException e)
@@ -93,86 +114,86 @@ namespace CsharpAppiumTemplate.Bases
                 e.StackTrace.ToString();
             }
         }
-        protected void SendKeys(By element, string text)
+        protected void SendKeys(IWebElement element, string text)
         {
-            IWebElement iElement = driver.FindElement(element);
+            ////IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
             Clear(element);
-            iElement.SendKeys(text);
+            element.SendKeys(text);
             ExtentReportHelpers.AddTestInfo(3, "PARAMETER: " + text);
         }
-        protected void SendKeysWithoutWaitVisible(By element, string text)
+        protected void SendKeysWithoutWaitVisible(IWebElement element, string text)
         {
-            IWebElement iElement = driver.FindElement(element);
-            iElement.SendKeys(text);
+            //IWebElement iElement = driver.FindElement(element);
+            element.SendKeys(text);
             ExtentReportHelpers.AddTestInfo(3, "PARAMETER: " + text);
         }
-        protected void Clear(By element)
+        protected void Clear(IWebElement element)
         {
             //waitForElement(element);
             //element.clear();
-            IWebElement iElement = driver.FindElement(element);
+            ////IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
-            iElement.Clear();
+            element.Clear();
         }
-        protected void clearAndSendKeys(By element, string text)
+        protected void clearAndSendKeys(IWebElement element, string text)
         {
             //waitForElement(element);
             //element.clear();
             //element.sendKeys(text);
-            IWebElement iElement = driver.FindElement(element);
+            //IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
-            iElement.Clear();
+            element.Clear();
         }
-        protected void ClearAndSendKeysAlternative(By locator, string text)
+        protected void ClearAndSendKeysAlternative(IWebElement element, string text)
         {
-            IWebElement iElement = driver.FindElement(locator);
-            WaitForElement(locator);
-            iElement.SendKeys(Keys.Control + "a");
-            iElement.SendKeys(Keys.Delete);
-            iElement.SendKeys(text);
+            //IWebElement iElement = driver.FindElement(element);
+            WaitForElement(element);
+            element.SendKeys(Keys.Control + "a");
+            element.SendKeys(Keys.Delete);
+            element.SendKeys(text);
         }
-        protected string GetText(By locator)
+        protected string GetText(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            string text = iElement.Text;
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            string text = element.Text;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + text);
             return text;
         }
-        protected string GetValue(By locator)
+        protected string GetValue(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            string text = iElement.GetAttribute("value");
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            string text = element.GetAttribute("value");
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + text);
             return text;
         }
-        protected bool ReturnIfElementIsDisplayed(By locator)
+        protected bool ReturnIfElementIsDisplayed(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            bool result = iElement.Displayed;
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            bool result = element.Displayed;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + result);
             return result;
         }
-        protected bool ReturnIfElementIsEnabled(By locator)
+        protected bool ReturnIfElementIsEnabled(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            bool result = iElement.Enabled;
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            bool result = element.Enabled;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + result);
             return result;
         }
-        protected bool ReturnIfElementIsSelected(By locator)
+        protected bool ReturnIfElementIsSelected(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            bool result = iElement.Selected;
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            bool result = element.Selected;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + result);
             return result;
         }
-        protected void ZZZZScrollUsingTouchActions_ByElements(By startElement, By endElement, int seconds)
+        protected void ZZZZScrollUsingTouchActions_ByElements(IWebElement startElement, IWebElement endElement, int seconds)
         {
             //TouchAction actions = new TouchAction(driver);
             //actions.Press(PointOption.point(startElement.getLocation().x, startElement.getLocation().y))
@@ -182,16 +203,16 @@ namespace CsharpAppiumTemplate.Bases
         }
         protected void scrollUsingTouchActions(int startX, int startY, int endX, int endY, int seconds)
         {
-            TouchAction actions = new TouchAction(driver);
+            TouchAction actions = new TouchAction(DriverFactory.GetDriver());
             actions.Press(startX, startY).Wait(seconds).MoveTo(endX, endY).Release().Perform();
         }
-        protected void longPress(By locator)
+        protected void longPress(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
             
-            TouchActions action = new TouchActions(driver);
-            action.LongPress(iElement);
+            TouchActions action = new TouchActions(DriverFactory.GetDriver());
+            action.LongPress(element);
             action.Perform();
         }
         protected void scrolling(string direction)
@@ -200,29 +221,29 @@ namespace CsharpAppiumTemplate.Bases
             //HashMap<string, string> scrollObject = new HashMap<string, string>();
             //scrollObject.put("direction", direction);
             //js.executeScript("mobile: scroll", scrollObject);
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            IJavaScriptExecutor js = (IJavaScriptExecutor)DriverFactory.GetDriver();
             Dictionary<string, string> scrollObject = new Dictionary<string, string>();
             scrollObject.Add("direction", direction);
             js.ExecuteScript("mobile: scroll", scrollObject);
         }
-        protected void tap(By locator)
+        protected void Tap(IWebElement element)
         {
             //waitForElement(element);
             //TouchActions action = new TouchActions(driver);
             //action.singleTap(element);
             //action.perform();
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            TouchActions action = new TouchActions(driver);
-            action.SingleTap(iElement);
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            TouchActions action = new TouchActions(DriverFactory.GetDriver());
+            action.SingleTap(element);
             action.Perform();
         }
-        protected void doubleTap(By locator)
+        protected void doubleTap(IWebElement element)
         {
-            WaitForElement(locator);
-            IWebElement iElement = driver.FindElement(locator);
-            TouchActions action = new TouchActions(driver);
-            action.DoubleTap(iElement);
+            WaitForElement(element);
+            //IWebElement iElement = driver.FindElement(element);
+            TouchActions action = new TouchActions(DriverFactory.GetDriver());
+            action.DoubleTap(element);
             action.Perform();
         }
 

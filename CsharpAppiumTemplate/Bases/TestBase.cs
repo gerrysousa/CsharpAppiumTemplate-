@@ -34,7 +34,7 @@ namespace CsharpAppiumTemplate.Bases
             
             DriverFactory.InitApp();
 
-            wait = new WebDriverWait(DriverFactory.getDriver(), TimeSpan.FromSeconds(GlobalParameters.TIMEOUT_DEFAULT));
+            wait = new WebDriverWait(DriverFactory.GetDriver(), TimeSpan.FromSeconds(GlobalParameters.TIMEOUT_DEFAULT));
 
             #region [AutoInstance] atribute methods calls to auto instace pages and flows
             //Necessário para realizar a instanciação automática das páginas e fluxos

@@ -117,6 +117,7 @@
     <Compile Include="Helpers\ExtentReportHelpers.cs" />
     <Compile Include="Helpers\GeneralHelpers.cs" />
     <Compile Include="Helpers\GlobalParameters.cs" />
+    <Compile Include="Pages\InputControlsPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\MenuPage.cs" />
     <Compile Include="Pages\StartPage.cs" />

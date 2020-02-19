@@ -18,8 +18,10 @@ namespace CsharpAppiumTemplate.Pages
         [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[8]", Priority = 1)]
         IWebElement loginPageBtn;
 
-        [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[4]", Priority = 1)]
+        [FindsByAndroidUIAutomator(XPath = "//android.widget.TextView[@text='Input Controls']", Priority = 1)]
         IWebElement inputControlsBtn;
+
+
 
         #endregion
 

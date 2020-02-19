@@ -57,27 +57,10 @@ namespace CsharpAppiumTemplate.Bases
             WebDriverException possibleWebDriverException = null;
             Stopwatch timeOut = new Stopwatch();
             timeOut.Start();
-
             while ((((int)timeOut.ElapsedMilliseconds) / 1000) <= GlobalParameters.TIMEOUT_DEFAULT)
             {
-               // AppiumWebElement element = null;
                 try
                 {
-                    // //WaitForElement(element);
-                    // //element.Click();
-                    // //ExtentReportHelpers.AddTestInfo(3, "");
-                    // //timeOut.Stop();
-                    // //return;
-
-                    //// //IWebElement iElement = driver.FindElement(element);
-                    //// WaitForElement(element);
-                    // TouchActions action = new TouchActions(DriverFactory.GetDriver());
-                    // action.SingleTap(element);
-                    // action.Perform();
-                    // ExtentReportHelpers.AddTestInfo(3, "");
-                    // timeOut.Stop();
-                    // return;
-
                     TouchAction action= new TouchAction(DriverFactory.GetDriver());
                     action.Tap(element);
                    // action.SingleTap(element);
@@ -86,10 +69,6 @@ namespace CsharpAppiumTemplate.Bases
                     ExtentReportHelpers.AddTestInfo(3, "");
                     timeOut.Stop();
                     return;
-
-
-
-
                 }
                 catch (StaleElementReferenceException e)
                 {
@@ -116,7 +95,6 @@ namespace CsharpAppiumTemplate.Bases
         }
         protected void SendKeys(IWebElement element, string text)
         {
-            ////IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
             Clear(element);
             element.SendKeys(text);
@@ -124,30 +102,21 @@ namespace CsharpAppiumTemplate.Bases
         }
         protected void SendKeysWithoutWaitVisible(IWebElement element, string text)
         {
-            //IWebElement iElement = driver.FindElement(element);
             element.SendKeys(text);
             ExtentReportHelpers.AddTestInfo(3, "PARAMETER: " + text);
         }
         protected void Clear(IWebElement element)
         {
-            //waitForElement(element);
-            //element.clear();
-            ////IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
             element.Clear();
         }
         protected void clearAndSendKeys(IWebElement element, string text)
         {
-            //waitForElement(element);
-            //element.clear();
-            //element.sendKeys(text);
-            //IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
             element.Clear();
         }
         protected void ClearAndSendKeysAlternative(IWebElement element, string text)
         {
-            //IWebElement iElement = driver.FindElement(element);
             WaitForElement(element);
             element.SendKeys(Keys.Control + "a");
             element.SendKeys(Keys.Delete);
@@ -156,7 +125,6 @@ namespace CsharpAppiumTemplate.Bases
         protected string GetText(IWebElement element)
         {
             WaitForElement(element);
-            //IWebElement iElement = driver.FindElement(element);
             string text = element.Text;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + text);
             return text;
@@ -164,7 +132,6 @@ namespace CsharpAppiumTemplate.Bases
         protected string GetValue(IWebElement element)
         {
             WaitForElement(element);
-            //IWebElement iElement = driver.FindElement(element);
             string text = element.GetAttribute("value");
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + text);
             return text;
@@ -172,7 +139,6 @@ namespace CsharpAppiumTemplate.Bases
         protected bool ReturnIfElementIsDisplayed(IWebElement element)
         {
             WaitForElement(element);
-            //IWebElement iElement = driver.FindElement(element);
             bool result = element.Displayed;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + result);
             return result;
@@ -180,7 +146,6 @@ namespace CsharpAppiumTemplate.Bases
         protected bool ReturnIfElementIsEnabled(IWebElement element)
         {
             WaitForElement(element);
-            //IWebElement iElement = driver.FindElement(element);
             bool result = element.Enabled;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + result);
             return result;
@@ -188,10 +153,21 @@ namespace CsharpAppiumTemplate.Bases
         protected bool ReturnIfElementIsSelected(IWebElement element)
         {
             WaitForElement(element);
-            //IWebElement iElement = driver.FindElement(element);
             bool result = element.Selected;
             ExtentReportHelpers.AddTestInfo(3, "RETURN: " + result);
             return result;
+        }
+
+        protected void ZZZZScrollUsingTouchActions(string direcao)
+        {
+            TouchAction action = new TouchAction(DriverFactory.GetDriver());
+            action.Press(100,300);
+            action.MoveTo(300,300);
+            action.Perform();
+            action.Release();
+            ExtentReportHelpers.AddTestInfo(3, "");
+
+            // driver.ExecuteScript("mobile:scroll", new Dictionary<string, string> { { "direction", "left" } });         
         }
         protected void ZZZZScrollUsingTouchActions_ByElements(IWebElement startElement, IWebElement endElement, int seconds)
         {
@@ -199,6 +175,7 @@ namespace CsharpAppiumTemplate.Bases
             //actions.Press(PointOption.point(startElement.getLocation().x, startElement.getLocation().y))
             //        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(seconds)))
             //        .moveTo(PointOption.point(endElement.getLocation().x, endElement.getLocation().y)).release().perform();
+
             
         }
         protected void scrollUsingTouchActions(int startX, int startY, int endX, int endY, int seconds)
@@ -247,10 +224,50 @@ namespace CsharpAppiumTemplate.Bases
             action.Perform();
         }
 
-        //Função para realizar scroll somente em Android
-        //protected By scrollToElementAndroid(string sdfstring)
-        //{
-        //    return ((AndroidDriver<By>)driver).findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + string + "\").instance(0))");
-        //}
+        public void ScrollUsingTouchActions(int xStart, int yStart, int xFinal, int yFinal)
+        {
+            TouchAction action = new TouchAction(DriverFactory.GetDriver());
+            action.Press(xStart, yStart);
+            action.MoveTo(xFinal, yFinal);
+            action.Wait(100);
+            action.Perform();
+            action.Release();
+            ExtentReportHelpers.AddTestInfo(3, "");
+        }
+
+        public void ScrollDownAndroid()
+        {
+            ScrollUsingTouchActions(525, 1900, 525, 300);
+        }
+
+        public void ScrollUpAndroid()
+        {
+            ScrollUsingTouchActions(525, 600, 525, 1900);
+        }
+
+        public void ScrollLeftAndroid()
+        {
+            ScrollUsingTouchActions(90, 1100, 999, 1100);
+        }
+
+        public void ScrollRightAndroid()
+        {
+            int width = DriverFactory.GetDriver().Manage().Window.Size.Width;
+            int height = DriverFactory.GetDriver().Manage().Window.Size.Height;
+
+            //int xInicial = width-50;
+            //int yInicial = (height / 2);
+
+            //int xFinal = 10;
+            //int yFinal = height / 2;
+            int xInicial = 999;
+            int yInicial = 1100;
+
+            int xFinal = 90;
+            int yFinal = 1100;
+
+            ScrollUsingTouchActions(xInicial, yInicial, xFinal, yFinal);
+            // ScrollUsingTouchActions(350, 450, 70, 450);
+        }
     }
 }

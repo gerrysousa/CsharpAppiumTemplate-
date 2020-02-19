@@ -16,20 +16,18 @@ namespace CsharpAppiumTemplate.Pages
 {
     public class StartPage : PageBase
     {
-        //   [AndroidFindBy](accessibility = "ReferenceApp")
-        //private MobileElement menu(accessibility = "ReferenceApp");
-
-        //    public void clickMenu()
-        //    {
-        //        click(menu);
-        //    }
-
+        #region mapeamento
         [FindsByAndroidUIAutomator(Accessibility = "ReferenceApp", Priority = 1)]
         IWebElement menu;
 
+        #endregion
+
+        #region açoes
         public void clickMenu()
         {
-        Click(menu);
+            Click(menu);
         }
+
+        #endregion
     }
 }

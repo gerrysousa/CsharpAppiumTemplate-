@@ -8,53 +8,7 @@ namespace CsharpAppiumTemplate.Helpers
 {
     class GlobalParameters
     {
-        //public static string token;
-        //public static string pathProject;
-        //public static string url;
-        //public static string reportName;
-        //public static string dbserver;
-        //public static string dbName;
-        //public static string dbUserId;
-        //public static string dbPassword;
-        //public static string dbTimeout;
-        //public static int reportSubstringLength;
-        //public static string authenticatorUser;
-        //public static string authenticatorPassword;
-
-
-        //public void Initializer()
-        //{
-
-        //    if (Properties.Settings.Default.ENVIRONMENT == "qa" || Properties.Settings.Default.ENVIRONMENT == "QA")
-        //    {
-        //        url = Properties.Settings.Default.QA_URL;
-        //        token = Properties.Settings.Default.QA_TOKEN;
-        //        dbserver = Properties.Settings.Default.QA_DB_SERVER;
-        //        dbName = Properties.Settings.Default.QA_DB_NAME;
-        //        dbUserId = Properties.Settings.Default.QA_DB_USER;
-        //        dbPassword = Properties.Settings.Default.QA_DB_PASSWORD;
-        //        authenticatorUser = Properties.Settings.Default.QA_AUTHENTICATOR_USER;
-        //        authenticatorPassword = Properties.Settings.Default.QA_AUTHENTICATOR_PASSWORD;
-        //    }
-        //    else
-        //    {
-        //        url = Properties.Settings.Default.DEV_URL;
-        //        token = Properties.Settings.Default.DEV_TOKEN;
-        //        dbserver = Properties.Settings.Default.DEV_DB_SERVER;
-        //        dbName = Properties.Settings.Default.DEV_DB_NAME;
-        //        dbUserId = Properties.Settings.Default.DEV_DB_USER;
-        //        dbPassword = Properties.Settings.Default.DEV_DB_PASSWORD;
-        //        authenticatorUser = Properties.Settings.Default.QA_AUTHENTICATOR_USER;
-        //        authenticatorPassword = Properties.Settings.Default.QA_AUTHENTICATOR_PASSWORD;
-        //    }
-
-        //    pathProject = GeneralHelpers.ReturnProjectPath();
-        //    reportSubstringLength = Properties.Settings.Default.REPORT_SUBSTRING_LENGTH;
-        //    dbTimeout = Properties.Settings.Default.DB_CONNECTION_TIMEOUT;
-        //    reportName = Properties.Settings.Default.REPORT_NAME + "_" + DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
-
-        //}
-
+        //---Config geral
         public static string BROWSER_DEFAULT;
         public static string EXECUTION;
         public static int TIMEOUT_DEFAULT;
@@ -99,8 +53,7 @@ namespace CsharpAppiumTemplate.Helpers
         public static string IOSDeviceName;
         public static string IOSAppPath;
         public static string IOSBundleId;
-        //public static string IOSBundleId;
-
+        
         //---DeviceFarm config
         public static string TestObjectApiKey;
         public static string TestObjectURL;
@@ -114,7 +67,6 @@ namespace CsharpAppiumTemplate.Helpers
 
             if (Properties.Settings.Default.CONFIG_ENVIRONMENT == "qa" || Properties.Settings.Default.CONFIG_ENVIRONMENT == "QA")
             {
-                // url = Properties.Settings.Default.QA_URL;
                 GET_SCREENSHOT_FOR_EACH_STEP = Properties.Settings.Default.CONFIG_GET_SCREENSHOT_FOR_EACH_STEP;
                 REPORT_NAME = Properties.Settings.Default.CONFIG_REPORT_NAME;
                 TIMEOUT_DEFAULT = Properties.Settings.Default.CONFIG_TIMEOUT_DEFAULT;

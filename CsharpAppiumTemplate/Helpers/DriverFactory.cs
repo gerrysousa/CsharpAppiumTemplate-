@@ -32,7 +32,7 @@ namespace CsharpAppiumTemplate.Helpers
             return driver;
         }
 
-        //public void setDriver(AppiumDriver<AppiumWebElement> driver)
+        //public void SetDriver(AppiumDriver<AppiumWebElement> driver)
         //{
         //    driver = driver;
         //}
@@ -48,19 +48,6 @@ namespace CsharpAppiumTemplate.Helpers
                 {
                     if (deviceType.Equals("Android"))
                     {
-                        //DesiredCapabilities caps = new DesiredCapabilities();
-                        //caps.SetCapability("platformName", GlobalParameters.AndroidPlatformName);
-                        //caps.SetCapability("platformVersion", GlobalParameters.AndroidPlatformVersion);
-                        //caps.SetCapability("deviceName", GlobalParameters.AndroidDeviceName);
-                        //caps.SetCapability("app", GlobalParameters.AndroidAppPath);
-                        //caps.SetCapability("browserName", GlobalParameters.AndroidBrowserName);
-                        //caps.SetCapability("udid", GlobalParameters.AndroidUDID);
-                        //caps.SetCapability("noReset", GlobalParameters.AndroidNoReset);
-                        //caps.SetCapability("fullReset", GlobalParameters.AndroidFullReset);
-                        //caps.SetCapability("orientation", GlobalParameters.AndroidOrientation);
-                        //caps.SetCapability("automationName", GlobalParameters.AppiumAutomationName);
-                        //driver = new AndroidDriver<AppiumWebElement>(new Uri("GlobalParameters.AppiumServer"), caps);
-
                         var appiumOptions = new AppiumOptions();
                         appiumOptions.AddAdditionalCapability(MobileCapabilityType.App, GlobalParameters.AndroidAppPath);
                         appiumOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, GlobalParameters.AndroidDeviceName);
@@ -69,38 +56,42 @@ namespace CsharpAppiumTemplate.Helpers
                         appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, GlobalParameters.AndroidPlatformVersion);
                         appiumOptions.AddAdditionalCapability(MobileCapabilityType.BrowserName, GlobalParameters.AndroidBrowserName);
 
-                        //driver = new AndroidDriver<AppiumWebElement>(appiumLocalService, appiumOptions);
+                        //Opcionais
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.NoReset, GlobalParameters.AndroidNoReset);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.FullReset, GlobalParameters.AndroidFullReset);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.Orientation, GlobalParameters.AndroidOrientation);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.AutomationName, GlobalParameters.AppiumAutomationName);
+
                         driver = new AndroidDriver<AppiumWebElement>(new Uri(GlobalParameters.AppiumServerName), appiumOptions);
                     }
                     else if (deviceType.Equals("IOS"))
                     {
-                    //    DesiredCapabilities caps = new DesiredCapabilities();
-                    //    caps.SetCapability("platformName", GlobalParameters.IOSPlatformName);
-                    //    caps.SetCapability("platformVersion", GlobalParameters.IOSPlatformVersion);
-                    //    caps.SetCapability("deviceName", GlobalParameters.IOSDeviceName);
-                    //    caps.SetCapability("automationName", GlobalParameters.IOSAutomationName);
-                    //    //caps.setCapability("bundleId", GlobalParameters.IOSBundleId);
-                    //    caps.SetCapability("app", GlobalParameters.IOSAppPath);
-                    //    //caps.setCapability("udid", GlobalParameters.IOSUDID);
-                    //    //caps.setCapability(CapabilityType.BROWSER_NAME, "safari");
-                    //    //    caps.setCapability("noReset", GlobalParameters.IOSNoReset);
-                    //    //    caps.setCapability("fullReset", GlobalParameters.IOSFullReset);
+                        var appiumOptions = new AppiumOptions();
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, GlobalParameters.IOSPlatformName);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, GlobalParameters.IOSPlatformVersion);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, GlobalParameters.IOSDeviceName);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.AutomationName, GlobalParameters.IOSAutomationName);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.App, GlobalParameters.IOSAppPath);
+                        //appiumOptions.AddAdditionalCapability(MobileCapabilityType.bundleId", GlobalParameters.IOSBundleId);
+                        //appiumOptions.AddAdditionalCapability(MobileCapabilityType.Udid, GlobalParameters.IOSUDID);
+                        //appiumOptions.AddAdditionalCapability(MobileCapabilityType.BrowserName, GlobalParameters.IosBrowserName);
+                        //appiumOptions.AddAdditionalCapability(MobileCapabilityType.NoReset", GlobalParameters.IOSNoReset);
+                        //appiumOptions.AddAdditionalCapability(MobileCapabilityType.FullReset", GlobalParameters.IOSFullReset);
 
-                    //    //driver = new IOSDriver(new URL("http://0.0.0.0:4723/wd/hub"), caps);
-                    //    driver = new IOSDriver<AppiumWebElement>(new Uri("GlobalParameters.AppiumServer"), caps);
+                        driver = new AndroidDriver<AppiumWebElement>(new Uri(GlobalParameters.AppiumServerName), appiumOptions);
                     }
                 }
                 else
                 { // Essa parte cria a instancia em uma Device Farm
                     if (deviceType.Equals("Android"))
                     {
-                        //DesiredCapabilities caps = new DesiredCapabilities();
-                        //caps.SetCapability("platformName", GlobalParameters.AndroidPlatformName);
-                        //caps.SetCapability("automationName", GlobalParameters.AppiumAutomationName);
-                        //caps.SetCapability("testobject_api_key", GlobalParameters.TestObjectApiKey);
-                        //caps.SetCapability("appiumVersion", GlobalParameters.AppiumVersion);
+                        var appiumOptions = new AppiumOptions();
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, GlobalParameters.AndroidPlatformName);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.AutomationName, GlobalParameters.AppiumAutomationName);
+                        appiumOptions.AddAdditionalCapability("testobject_api_key", GlobalParameters.TestObjectApiKey);
+                        appiumOptions.AddAdditionalCapability(MobileCapabilityType.AppiumVersion, GlobalParameters.AppiumVersion);
 
-                        //driver = new AndroidDriver(new URL(GlobalParameters.TestObjectURL), caps);
+                        driver = new AndroidDriver<AppiumWebElement>(new Uri(GlobalParameters.TestObjectURL), appiumOptions);                        
                     }
                     else if (deviceType == "IOS")
                     {
@@ -116,7 +107,7 @@ namespace CsharpAppiumTemplate.Helpers
             return driver;
         }
 
-        public static void killDriver()
+        public static void KillDriver()
         {
             if (driver != null)
             {

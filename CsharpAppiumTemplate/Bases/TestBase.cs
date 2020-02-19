@@ -21,9 +21,6 @@ namespace CsharpAppiumTemplate.Bases
         public void OneTimeSetUp()
         {
             new GlobalParameters();
-            //appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().Build();
-            //appiumLocalService.Start();
-
             ExtentReportHelpers.CreateReport();
         }
 
@@ -48,14 +45,14 @@ namespace CsharpAppiumTemplate.Bases
         {
             ExtentReportHelpers.AddTestResult();
             ExtentReportHelpers.GenerateReport();
-            DriverFactory.QuitInstace();
+            DriverFactory.KillDriver();
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             ExtentReportHelpers.GenerateReport();
-            DriverFactory.QuitInstace();
+            DriverFactory.KillDriver();
         }
 
         #region Methodes needed to auto intance pages and flows [AutoInstance]
@@ -79,7 +76,6 @@ namespace CsharpAppiumTemplate.Bases
                 if (field.GetCustomAttribute(typeof(AutoInstance)) != null)
                     fields.Add(field);
             }
-
             return fields;
         }
         #endregion

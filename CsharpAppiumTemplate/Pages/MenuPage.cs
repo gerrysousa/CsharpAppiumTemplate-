@@ -14,33 +14,16 @@ namespace CsharpAppiumTemplate.Pages
 {
     class MenuPage : PageBase
     {
-        //@AndroidFindBy(xpath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[8]")
-        //  private MobileElement loginPageBtn;
-        //@AndroidFindBy(xpath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[4]")
-        //private MobileElement inputControlsBtn;
-
-        //public void clickLoginPage()
-        //{
-        //    click(loginPageBtn);
-        //}
-        //public void clickInputControls()
-        //{
-        //    click(inputControlsBtn);
-        //}
-
-        //========================================================================================
-        //[FindsBySequence]
-        //[MobileFindsByAll(Android = true, IOS = true)]
-        //[FindsByIOSUIAutomation(nameof = "Email Address", Priority = 1)]
-        //[FindsByAndroidUIAutomator(ID = "com.yardi.pshark:id / mat_edit_text_email", Priority = 1)]
-        //public IWebElement usernameField;
-
+        #region mapeamento
         [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[8]", Priority = 1)]
         IWebElement loginPageBtn;
 
         [FindsByAndroidUIAutomator(XPath = "(//android.widget.TextView[@content-desc=\"Row Category Name\"])[4]", Priority = 1)]
         IWebElement inputControlsBtn;
 
+        #endregion
+
+        #region acoes na tela
         public void clickLoginPage()
         {
             Click(loginPageBtn);
@@ -49,5 +32,7 @@ namespace CsharpAppiumTemplate.Pages
         {
             Click(inputControlsBtn);
         }
+
+        #endregion
     }
 }
